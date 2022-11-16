@@ -127,4 +127,88 @@ public class UI
 
         bgPanel[bgNum].add(objectLabel);
     }
+    
+    public void createArrow(int bgNum, int arrX, int arrY, int arrW, int arrH, String arrN, String comm)
+    {
+        ImageIcon arrowIcon = new ImageIcon(getClass().getClassLoader().getResource(arrN));
+
+        JButton arrowB = new JButton();
+        arrowB.setBounds(arrX,arrY,arrW,arrH);
+        arrowB.setBackground(null);
+        arrowB.setContentAreaFilled(false);
+        arrowB.setFocusPainted(false);
+        arrowB.setIcon(arrowIcon);
+        arrowB.addActionListener(gm.actionHandler);
+        arrowB.setActionCommand(comm);
+        arrowB.setBorderPainted(false);
+
+        bgPanel[bgNum].add(arrowB);
+    }
+
+    public void createPlayerField()
+    {
+        lifepanel = new JPanel();
+        lifepanel.setBounds(50,0,250,50);
+        lifepanel.setBackground(Color.lightGray);
+        lifepanel.setLayout(new GridLayout(1,5));
+        window.add(lifepanel);
+
+        ImageIcon lifeIcon = new ImageIcon(getClass().getClassLoader().getResource("liferose.png"));
+
+        int i = 0;
+        while(i<5)
+        {
+            lifelabel[i] = new JLabel();
+            lifelabel[i].setIcon(lifeIcon);
+
+            lifepanel.add(lifelabel[i]);
+
+            i++;
+        }
+
+        inventorypanel = new JPanel();
+        inventorypanel.setBounds(1050,0,100,50);
+        inventorypanel.setBackground(Color.lightGray);
+        inventorypanel.setLayout(new GridLayout(1,2));
+
+        watercanlabel = new JLabel();
+        keylabel = new JLabel();
+
+        ImageIcon waterIcon = new ImageIcon(getClass().getClassLoader().getResource("watercan.png"));
+        watercanlabel.setIcon(waterIcon);
+
+        ImageIcon keyIcon = new ImageIcon(getClass().getClassLoader().getResource("key.png"));
+        keylabel.setIcon(keyIcon);
+
+        inventorypanel.add(watercanlabel);
+        inventorypanel.add(keylabel);
+
+        window.add(inventorypanel);
+    }
+
+    public void generateScreen()
+    {
+        createBackground(0,"greenroom.png");
+
+        createObject(225,250,200,115, "drawers.png",0, "Open", "Move","Open Drawers", "Move Drawers");
+        createObject(730,100,100,99,"paintings.png",0, "Look", "Move","Look at Painting", "Move Painting");
+        createObject(255,177,38,83,"plant.png",0, "Look", "Pluck","Look at Plant", "Pluck Plant");
+
+        createArrow(0,0,150, 50, 50, "arrowleft.png", "nextScene2");
+
+        bgPanel[0].add(bgLabel[0]);
+
+        createBackground(1,"redroom.jpg");
+
+        createObject(225,160,300,204, "sofa.png",1, "Look", "Move","Look At Sofa", "Move Sofa");
+        createObject(725,75,100,207, "door.png",1, "Look", "Open","Look At Door", "Open Door");
+
+        createArrow(1,1050,150, 50, 50, "arrowright.png", "nextScene1");
+
+        bgPanel[1].add(bgLabel[1]);
+
+        createBackground(2, "outside.png");
+
+        bgPanel[2].add(bgLabel[2]);
+    }
 }
