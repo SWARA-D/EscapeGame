@@ -80,4 +80,38 @@ public class Event01
         }
 
     }
+    
+    public void LookSofa() { gm.ui.messageText.setText("Ohh! So Dusty!");
+    }
+
+    public void MoveSofa() {
+
+        if(gm.player.hasCan == 0) {
+            gm.ui.messageText.setText("Found Watering Can!");
+            gm.player.hasCan = 1;
+            gm.player.updateStatus();
+        }
+
+        else
+        {
+            gm.ui.messageText.setText("You have the Watering Can!");
+        }
+    }
+    
+    public void LookDoor() { gm.ui.messageText.setText("Maybe a Way Out?");
+    }
+
+    public void OpenDoor()
+    {
+        if(gm.player.hasKey == 1)
+        {
+            gm.ui.messageText.setText("Found a way out!");
+            gm.sc.showScene3();
+        }
+
+        else
+        {
+            gm.ui.messageText.setText("Needs a Key!");
+        }
+    }
 }
